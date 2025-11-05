@@ -19,7 +19,7 @@ const CommonService = ({ data, title }) => {
                         style={{
                             height: 75.0,
                             width: 75.0,
-                            borderTopLeftRadius: 40,
+                            borderTopLeftRadius: 35.0,
                             borderBottomLeftRadius: 35,
                             borderBottomRightRadius: 35,
                         }}

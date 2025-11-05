@@ -22,7 +22,7 @@ const SplashScreen = () => {
             <MyStatusBar />
             <View style={styles.pageStyle}>
                 <Image
-                    source={require('../assets/images/appIcon.png')}
+                    source={require('../assets/images/icon.png')}
                     style={{ height: 100.0, width: 100.0, borderRadius: 70.0 }}
                     resizeMode="contain"
                 />
