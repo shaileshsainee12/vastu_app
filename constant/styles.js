@@ -1,0 +1,221 @@
+export const Colors = {
+    primary: '#CDA202',
+    cardColor:'#faf6e6',
+    lightGray: '#DBDBDB',
+    whiteColor: '#ffffff',
+    blackColor: '#000000',
+    grayColor:'#9c9c9c'
+}
+
+export const Fonts = {
+
+    blackRegular: {
+        fontFamily: 'Lato_Regular',
+        color: Colors.blackColor,
+    },
+
+    black18Regular: {
+        fontFamily: 'Lato_Regular',
+        fontSize: 18.0,
+        color: Colors.blackColor,
+    },
+
+    black16Regular: {
+        fontFamily: 'Lato_Regular',
+        fontSize: 16.0,
+        color: Colors.blackColor,
+    },
+
+    black20Regular: {
+        fontFamily: 'Lato_Regular',
+        fontSize: 20.0,
+        color: Colors.blackColor,
+    },
+
+    blackBold: {
+        fontFamily: 'Lato_Bold',
+        color: Colors.blackColor,
+    },
+
+    black15Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 15.0,
+        color: Colors.blackColor,
+    },
+
+    black16Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 16.0,
+        color: Colors.blackColor,
+    },
+
+    black18Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 18.0,
+        color: Colors.blackColor,
+    },
+
+    black20Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 20.0,
+        color: Colors.blackColor,
+    },
+
+    black22Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 22.0,
+        color: Colors.blackColor,
+    },
+
+    black24Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 24.0,
+        color: Colors.blackColor,
+    },
+
+    whiteRegular: {
+        fontFamily: 'Lato_Regular',
+        color: Colors.whiteColor,
+    },
+
+    white13Regular: {
+        fontFamily: 'Lato_Regular',
+        color: Colors.whiteColor,
+        fontSize: 13.0
+    },
+
+    white16Regular: {
+        fontFamily: 'Lato_Regular',
+        color: Colors.whiteColor,
+        fontSize: 16.0
+    },
+
+    white20Regular: {
+        fontFamily: 'Lato_Regular',
+        color: Colors.whiteColor,
+        fontSize: 20.0
+    },
+
+    white17Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 17.0,
+        color: Colors.whiteColor
+    },
+    white18Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 18.0,
+        color: Colors.whiteColor
+    },
+
+    white20Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 20.0,
+        color: Colors.whiteColor
+    },
+
+    white30Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 30.0,
+        color: Colors.whiteColor
+    },
+
+    grayBold: {
+        fontFamily: 'Lato_Bold',
+        color: 'gray'
+    },
+
+    gray14Bold: {
+        fontFamily: 'Lato_Bold',
+        fontSize: 14.0,
+        color: 'gray'
+    },
+
+    grayRegular: {
+        fontFamily: 'Lato_Regular',
+        color: 'gray',
+    },
+
+    gray14Regular: {
+        fontFamily: 'Lato_Regular',
+        color: 'gray',
+        fontSize: 14.0
+    },
+
+    gray15Regular: {
+        fontFamily: 'Lato_Regular',
+        color: 'gray',
+        fontSize: 15.0
+    },
+
+    gray16Regular: {
+        fontFamily: 'Lato_Regular',
+        color: 'gray',
+        fontSize: 16.0
+    },
+
+    gray17Regular: {
+        fontFamily: 'Lato_Regular',
+        color: 'gray',
+        fontSize: 17.0
+    },
+
+    primaryColorRegular: {
+        fontFamily: 'Lato_Regular',
+        color: Colors.primary
+    },
+
+    primaryColor16Regular: {
+        fontFamily: 'Lato_Regular',
+        color: Colors.primary,
+        fontSize: 16.0
+    },
+
+    primaryColor13Bold: {
+        fontFamily: 'Lato_Bold',
+        color: Colors.primary,
+        fontSize: 13.0
+    },
+
+    primaryColor17Bold: {
+        fontFamily: 'Lato_Bold',
+        color: Colors.primary,
+        fontSize: 17.0
+    },
+
+    primaryColor20Bold: {
+        fontFamily: 'Lato_Bold',
+        color: Colors.primary,
+        fontSize: 20.0
+    },
+
+    primaryColorBold: {
+        fontFamily: 'Lato_Bold',
+        color: Colors.primary
+    },
+
+    orangeColorBold: {
+        fontFamily: 'Lato_Bold',
+        color: '#FF9B07'
+    },
+
+}
+
+export const Sizes = {
+    fixPadding: 10.0,
+}
+
+export const CommonStyles = {
+    shadow: {
+        shadowColor: Colors.blackColor,
+        shadowOffset: { x: 1, y: 1 },
+        shadowOpacity: 0.2,
+        // shadowRadius: 2.0,
+        elevation: 3.0
+    },
+    commonTextFieldStyle: {
+        paddingTop: 0,
+        paddingBottom: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+    }
+}

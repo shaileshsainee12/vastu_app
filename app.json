@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "rn-doctorPro",
+    "name": "RN DoctorPro",
     "slug": "rn-doctorPro",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,13 +9,22 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "bundleIdentifier": "com.rct.doctorpro",
+      "buildNumber": "1.0.1",
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "YOUR GOOGLE MAP API KEY HERE"
+        }
+      },
+      "package": "com.rct.doctorpro",
+      "versionCode": 3
     },
     "web": {
       "bundler": "metro",
@@ -27,7 +36,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
