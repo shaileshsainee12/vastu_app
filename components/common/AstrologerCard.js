@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { Fonts, Colors, Sizes } from '../../constant/styles';
 
-const AstrologerCard = ({ astrologer ,btnText}) => {
+const AstrologerCard = ({ astrologer ,btnText, onPress}) => {
     const { profilePic, name, specialization, charges, language,Experience } = astrologer;
 
     return (
@@ -24,7 +24,7 @@ const AstrologerCard = ({ astrologer ,btnText}) => {
                     <Text style={styles.chargesText}>{charges}</Text>
                 </View>
             </View>
-            <TouchableOpacity style={styles.bookButton}>
+            <TouchableOpacity style={styles.bookButton} onPress={onPress}>
                 <Text style={styles.bookButtonText}>{btnText}</Text>
             </TouchableOpacity>
         </View>

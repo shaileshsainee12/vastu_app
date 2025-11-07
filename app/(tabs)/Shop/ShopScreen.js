@@ -13,46 +13,39 @@ import {
 import { Ionicons, FontAwesome, Feather } from '@expo/vector-icons';
 import { Fonts, Colors, Sizes, } from "../../../constant/styles";
 import { useNavigation } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
-import CommonService from "../../../components/common/CommonService";
-import AstrologerCard from "../../../components/common/AstrologerCard";
 import AstroRemediesBanner from "../../../components/AstroRemediesBanner";
+import { LinearGradient } from "expo-linear-gradient";
 import ProductCard from "../../../components/common/ProductCard";
-import ClassesCard from "../../../components/common/ClassesCard";
-import ConsultationModal from "../../../components/common/ConsultationModal";
-import RequestClassJoin from "../../../components/common/RequestClassJoin";
 const { width, height } = Dimensions.get("window");
+const CARD_WIDTH = (width - 45) / 2;
 
-const astrologersList = [
+const categoryListData = [
     {
         id: '1',
-        profilePic: require('../../../assets/images/Astrologer1.png'),
-        name: 'Dr. John Doe',
-        specialization: 'Vastu Expert',
-        charges: '₹50/min',
-        language: 'English',
-        Experience: 10,
+        name: 'Gemstones',
+        image: require('../../../assets/images/product/Gemstones.png'),
     },
     {
         id: '2',
-        profilePic: require('../../../assets/images/Astrologer2.png'),
-        name: 'Dr. Jane Smith',
-        specialization: 'Numerology',
-        charges: '₹45/min',
-        language: 'Hindi,English',
-        Experience: 8,
+        name: 'Lockets',
+        image: require('../../../assets/images/product/Lockets.png'),
     },
     {
         id: '3',
-        profilePic: require('../../../assets/images/Astrologer1.png'),
-        name: 'Dr. Emily White',
-        specialization: 'Crystal Healing',
-        charges: '₹60/min',
-        language: 'English',
-        Experience: 12,
+        name: 'Rudraksha',
+        image: require('../../../assets/images/product/Rudraksha.png'),
     },
-];
-
+    {
+        id: '4',
+        name: 'Lockets',
+        image: require('../../../assets/images/product/Lockets.png'),
+    },
+    {
+        id: '5',
+        name: 'Gemstones',
+        image: require('../../../assets/images/product/Gemstones.png'),
+    }
+]
 const productsList = [
     {
         id: '1',
@@ -83,162 +76,90 @@ const productsList = [
         discountPrice: 30,
     },
 ];
-
-const classesList = [
+const products = [
     {
-        id: '1',
-        image: require('../../../assets/images/Astrologer1.png'),
-        subject: 'Vastu',
-        tutorName: 'Dr. John Doe',
-        time: '02 PM to 03 PM',
+        id: "1",
+        name: "7 Mukhi Rudraksha",
+        price: "₹8,399",
+        oldPrice: "₹12,200",
+        image: require("../../../assets/images/Home/Rudraksh.png"),
     },
     {
-        id: '2',
-        image: require('../../../assets/images/Astrologer2.png'),
-        subject: 'Residential Vastu',
-        tutorName: 'Dr. Jane Smith',
-        time: '03 PM to 04 PM',
+        id: "2",
+        name: "Kachhuaa",
+        price: "₹8,399",
+        oldPrice: "₹12,200",
+        image: require("../../../assets/images/kachhuaa.png"),
     },
     {
-        id: '3',
-        image: require('../../../assets/images/Astrologer3.png'),
-        subject: 'Commercial Vastu',
-        tutorName: 'Dr. Emily White',
-        time: '04 PM to 05 PM',
+        id: "3",
+        name: "Bracelet",
+        price: "₹8,399",
+        oldPrice: "₹12,200",
+        image: require("../../../assets/images/stone.png"),
+    },
+    {
+        id: "4",
+        name: "Lari",
+        price: "₹8,399",
+        oldPrice: "₹12,200",
+        image: require("../../../assets/images/Lari.png"),
     },
 ];
-
-
-const HomeScreen = () => {
-
-    const specialistsList = [
-        {
-            id: '1',
-            name: 'Vastu',
-            image: require('../../../assets/images/Home/vastu.png'),
-        },
-        {
-            id: '2',
-            name: 'Residential Vastu',
-            image: require('../../../assets/images/Home/Residential_Vastu.jpg'),
-        },
-        {
-            id: '3',
-            name: 'Commercial Vastu',
-            image: require('../../../assets/images/Home/Commercial_Vastu.jpg'),
-        },
-        {
-            id: '4',
-            name: 'Numerology Vastu',
-            image: require('../../../assets/images/Home/Numerology.png'),
-        },
-        {
-            id: '5',
-            name: 'Crystal Healing',
-            image: require('../../../assets/images/Home/Crystal.png'),
-        },
-        {
-            id: '6',
-            name: 'Rudraksh healing',
-            image: require('../../../assets/images/Home/Rudraksh.png'),
-        },
-        {
-            id: '7',
-            name: 'Astro Vastu/Astrology',
-            image: require('../../../assets/images/Home/astro.png'),
-        },
-    ];
+const ShopScreen = () => {
     const navigation = useNavigation();
     const [showAddressSheet, setShowAddressSheet] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-    const [openRequestClass, setOpenRequestClass] = useState(false);
-    const handleOpenConsult = () => {
-        setShowModal(true)
-    }
-
-    const handleOpenRequestClass = () => {
-        setOpenRequestClass(true)
-    }
     return (
         <View style={{ flex: 1, backgroundColor: 'white', }}>
             {header()}
             <FlatList
                 contentContainerStyle={{ paddingTop: Sizes.fixPadding * 8.0 }}
                 ListHeaderComponent={
-                    <>
+                    <View>
                         {search()}
-                        {newlyLanched()}
-                        <CommonService data={specialistsList} title="Specialists" />
-                        <CommonService data={specialistsList} title="16 Sanskars service" />
-                        {titleWithButton({ title: 'Our Astrologers', btnText: "View All" })}
-                        <FlatList
-                            horizontal
-                            showsHorizontalScrollIndicator={true}
-                            data={astrologersList}
-                            keyExtractor={(item) => `${item.id}`}
-                            renderItem={({ item }) => <AstrologerCard astrologer={item} btnText="Book a Consultation" onPress={handleOpenConsult} />}
-                            contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0 }}
-                        />
-                        {titleWithButton({ title: 'Our Live Astrologers', btnText: "View All" })}
-                        <FlatList
-                            horizontal
-                            showsHorizontalScrollIndicator={true}
-                            data={astrologersList}
-                            keyExtractor={(item) => `${item.id}`}
-                            renderItem={({ item }) => <AstrologerCard astrologer={item} btnText="Connect Now" onPress={handleOpenConsult} />}
-                            contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0 }}
-                        />
                         <AstroRemediesBanner
-                            about={'Shop Authentic Astro \nRemedies-Energised \n& Ready to Use'}
+                            about={'Shop Authentic Astro \nRemedies'}
                             para={"Shop Now and Get"}
                             off={"20% Off"}
-                            btnText={"Shop Now"}
-                            onPress={() => navigation.navigate('Shop/ShopScreen')}
                         />
+                        {CategoryList({ title: 'Shop By Category', data: categoryListData })}
+                        <View style={{ marginTop: Sizes.fixPadding * 2.0, }} />
+                        <Text style={{ ...Fonts.black18Bold, marginHorizontal: Sizes.fixPadding * 2.0, }}>
+                            Best Seller
+                        </Text>
                         <FlatList
                             horizontal
                             showsHorizontalScrollIndicator={true}
                             data={productsList}
                             keyExtractor={(item) => `${item.id}`}
-                            renderItem={({ item }) => <ProductCard item={item}
-                                onPress={() =>
-                                    navigation.push('Product/ProductDetails', { name: item.name })
-                                }
-                            />}
+                            renderItem={({ item }) => <ProductCard item={item} />}
                             contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0 }}
                         />
-                        {titleWithButton({ title: 'Classes', btnText: "View All" })}
-                        <FlatList
-                            horizontal
-                            showsHorizontalScrollIndicator={true}
-                            data={classesList}
-                            keyExtractor={(item) => `${item.id}`}
-                            renderItem={({ item }) => <ClassesCard item={item} onPress={handleOpenRequestClass} />}
-                            contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0 }}
-                        />
-                    </>
+                        <Text style={{ ...Fonts.black18Bold, margin: Sizes.fixPadding * 2.0, }}>
+                            All Product
+                        </Text>
+                        {ProductListScreen({ products: products })}
+
+                    </View>
                 }
                 showsVerticalScrollIndicator={false}
             />
-            {addressSheet()}
-            <ConsultationModal visible={showModal} onClose={() => setShowModal(false)} />
-            <RequestClassJoin visible={openRequestClass} onClose={() => setOpenRequestClass(false)} />
+            {filterModal()}
         </View>
-    );
-
+    )
     {/* ========== Top Header  ===============*/ }
     function header() {
         return (
             <View style={styles.headerStyle}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => navigation.goBack()} >
                     <View style={{ display: "flex", flexDirection: "row", alignItems: 'center', justifyContent: "center" }}>
-                        <FontAwesome name="user-circle" size={24} color={Colors.primary} />
-                        <Text style={{ ...Fonts.black18Bold, marginLeft: 10.0 }}>Hello, User Name</Text>
+                        <FontAwesome name="long-arrow-left" size={24} color={Colors.primary} />
+                        <Text style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 10.0 }}>Product</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={{
                     flexDirection: 'row', alignItems: 'center', justifyContent: "center", height: 50, width: 50, backgroundColor: Colors.whiteColor,
-                    shadowColor: '#000000',
+                    shadowColor: Colors.blackColor,
                     shadowOpacity: 1,
                     shadowRadius: 4,
                     // ✅ Android shadow
@@ -251,6 +172,7 @@ const HomeScreen = () => {
             </View>
         )
     }
+
     {/* ========== Search Section  ===============*/ }
     function search() {
         return (
@@ -272,61 +194,84 @@ const HomeScreen = () => {
             </View>
         )
     }
-    {/* ========== Newly Lanched Banner  ===============*/ }
-    function newlyLanched() {
+    ///* ========== Product category  ===============*/
+    function CategoryList({ title, data }) {
+        const renderItem = ({ item }) => (
+            <>
+                <TouchableOpacity
+                    activeOpacity={0.6}
+                // onPress={() => navigation.push('Specialist/SpecialistScreen', { name: item.name })}
+                >
+                    <View style={styles.specialistInfoContainer}>
+                        <Image
+                            source={item.image}
+                            resizeMode="contain"
+                            style={{
+                                height: 75.0,
+                                width: 75.0,
+                            }}
+                        />
+                        <Text style={styles.specialistTextStyle}>
+                            {item.name}
+                        </Text>
+                    </View>
+                </TouchableOpacity>
+            </>
+        );
         return (
             <>
-                {/* Banner Section */}
-
-                <LinearGradient
-                    colors={['#FFE689', '#CCA104']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={styles.banner}
-                >
-                    <View style={{ flex: 1 }}>
-                        <Text style={styles.bannerTitle}>
-                            Guidance from {"\n"}Trusted Astrologers,{"\n"}Just a Tap Away
-                        </Text>
-                        <TouchableOpacity style={styles.bookButton} onPress={handleOpenConsult}>
-                            <Text style={styles.bookButtonText}>Book a Consultation</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    <Image
-                        source={require("../../../assets/images/astro-boy.png")}
-                        style={styles.bannerImage}
-                        resizeMode="contain"
-                    />
-
-                </LinearGradient>
-
+                <Text style={{ ...Fonts.black18Bold, margin: Sizes.fixPadding * 2.0, marginBottom: Sizes.fixPadding }}>
+                    {title}
+                </Text>
+                <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    data={data}
+                    keyExtractor={(item) => `${item.id}`}
+                    renderItem={renderItem}
+                    contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0 }}
+                />
             </>
         )
     }
-    function titleWithButton({ title, btnText }) {
-        return (
-            <View style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginVertical: Sizes.fixPadding * 2.0,
-                marginHorizontal: Sizes.fixPadding * 2.0
-            }}>
-                <Text style={{
-                    ...Fonts.black18Bold,
-                }}>
-                    {title}
-                </Text>
-                <TouchableOpacity style={styles.bookButton}>
-                    <Text style={styles.bookButtonText}>{btnText}</Text>
-                </TouchableOpacity>
 
+    function ProductListScreen({ products }) {
+        const renderItem = ({ item }) => (
+            <View style={styles.card}>
+                <Image source={item.image} style={styles.image} resizeMode="cover" />
+                <View style={styles.infoContainer}>
+                    <Text style={styles.name} numberOfLines={1}>{item.name}</Text>
+                    <View style={styles.priceContainer}>
+                        <Text style={styles.price}>{item.price}</Text>
+                        <Text style={styles.oldPrice}>{item.oldPrice}</Text>
+                    </View>
+                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 10, marginVertical: Sizes.fixPadding }}>
+                        <TouchableOpacity style={styles.addIcon}>
+                            <Ionicons name="cart-outline" size={20} color={`${Colors.blackColor}`} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.bookButton}>
+                            <Text style={styles.bookButtonText}>Order Now</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
-        )
-    }
+        );
 
-    function addressSheet() {
+        return (
+            <View style={styles.container}>
+                <FlatList
+                    data={products}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    numColumns={2}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{ paddingBottom: 20 }}
+                />
+            </View>
+        );
+    };
+
+    function filterModal() {
         const [availability, setAvailability] = useState("");
         const [specializations, setSpecializations] = useState([]);
         const [languages, setLanguages] = useState([]);
@@ -347,7 +292,7 @@ const HomeScreen = () => {
                 languages,
                 experience,
             });
-            // setShowFilter(false);
+            setShowAddressSheet(false);
         };
         return (
             <Modal
@@ -499,9 +444,7 @@ const HomeScreen = () => {
             </Modal>
         )
     }
-
 }
-
 const styles = StyleSheet.create({
 
     headerStyle: {
@@ -530,7 +473,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: Sizes.fixPadding * 2.0,
         justifyContent: 'space-between',
-        marginTop: Sizes.fixPadding * 2.0
+        marginVertical: Sizes.fixPadding * 2.0
     },
     searchStyle: {
         height: 50.0,
@@ -543,40 +486,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: Sizes.fixPadding + 5.0,
     },
-    banner: {
-        flexDirection: "row",
-        alignItems: "center",
-        borderRadius: Sizes.fixPadding + 5.0,
-        padding: Sizes.fixPadding + 5.0,
-        margin: Sizes.fixPadding * 2,
-        position: "relative",
-    },
-
-    bannerTitle: {
-        fontSize: 18,
-        fontWeight: "700",
-        color: Colors.blackColor,
-        marginBottom: Sizes.fixPadding + 2.0,
-    },
-    bookButton: {
-        backgroundColor: Colors.primary,
-        paddingHorizontal: Sizes.fixPadding * 2.0,
-        paddingVertical: Sizes.fixPadding,
-        borderRadius: Sizes.fixPadding,
-        alignSelf: "flex-start",
-    },
-    bookButtonText: {
-        color: Colors.whiteColor,
-        fontWeight: "600",
-    },
-    bannerImage: {
-        position: "absolute",
-        right: 0,
-        bottom: 0
-    },
     modalContainer: {
         backgroundColor: Colors?.whiteColor,
-        padding: Sizes.fixPadding * 2.0,
+        padding: 20,
     },
     sectionTitle: {
         fontSize: Sizes.fixPadding + 6.0,
@@ -586,24 +498,24 @@ const styles = StyleSheet.create({
     optionContainer: {
         flexDirection: "row",
         flexWrap: "wrap",
-        gap: Sizes.fixPadding - 2.0,
-        marginBottom: Sizes.fixPadding,
+        gap: 8,
+        marginBottom: 10,
     },
     optionButton: {
         borderWidth: 1,
-        borderColor: Colors.primary,
-        borderRadius: Sizes.fixPadding,
-        paddingHorizontal: Sizes.fixPadding + 2.0,
-        paddingVertical: Sizes.fixPadding - 4.0,
+        borderColor: "#d4b450",
+        borderRadius: 10,
+        paddingHorizontal: 12,
+        paddingVertical: 6,
     },
     optionText: {
-        color: Colors.blackColor,
+        color: "#000",
     },
     optionSelected: {
-        backgroundColor: Colors.primary,
+        backgroundColor: "#d4b450",
     },
     optionTextSelected: {
-        color: Colors.whiteColor,
+        color: "white",
         fontWeight: "bold",
     },
     buttonContainer: {
@@ -628,9 +540,99 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     cancelText: {
+        color: "#000",
+    },
+    specialistInfoContainer: {
+        height: 115.0,
+        width: 80.0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10.0,
+        marginRight: Sizes.fixPadding + 5.0,
+    },
+    specialistTextStyle: {
+        ...Fonts.black15Bold,
+        fontSize: Sizes.fixPadding,
+        textAlign: 'center',
+    },
+    container: {
+        flex: 1,
+        backgroundColor: Colors.whiteColor,
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: Sizes.fixPadding * 3.0
+    },
+    card: {
+        backgroundColor: `${Colors.primary}33`,
+        borderRadius: Sizes.fixPadding,
+        margin: 7,
+        padding: Sizes.fixPadding,
+        width: CARD_WIDTH,
+    },
+    image: {
+        width: "100%",
+        height: 120,
+        borderRadius: Sizes.fixPadding,
+    },
+    infoContainer: {
+        padding: 8,
+    },
+    name: {
+        fontSize: Sizes.fixPadding + 3.0,
+        fontWeight: "500",
         color: Colors.blackColor,
+    },
+    priceContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: 4,
+    },
+    price: {
+        fontSize: Sizes.fixPadding + 3.0,
+        fontWeight: "bold",
+        color: Colors.blackColor,
+        marginRight: 4,
+    },
+    oldPrice: {
+        fontSize: Sizes.fixPadding + 2.0,
+        color: "#888",
+        textDecorationLine: "line-through",
+    },
+    orderBtn: {
+        backgroundColor: Colors.primary,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 6,
+        borderRadius: 6,
+        marginTop: 8,
+    },
+    orderText: {
+        color: Colors.whiteColor,
+        fontWeight: "600",
+        fontSize: 13,
+    },
+
+    addIcon: {
+        backgroundColor: `${Colors.primary}33`,
+        paddingHorizontal: Sizes.fixPadding - 4.0,
+        paddingVertical: Sizes.fixPadding - 2.0,
+        borderRadius: 5
+    },
+    bookButton: {
+        backgroundColor: Colors.primary,
+        paddingHorizontal: Sizes.fixPadding - 2.0,
+        paddingVertical: Sizes.fixPadding - 2.0,
+        borderRadius: Sizes.fixPadding,
+        alignItems: 'center',
+    },
+    bookButtonText: {
+        color: Colors.whiteColor,
+        fontFamily: "Lato_Bold",
+        fontWeight: "600",
     },
 
 })
 
-export default HomeScreen;
+export default ShopScreen

@@ -51,6 +51,9 @@ export default function RootLayout() {
       <Stack.Screen name="EditProfile/EditProfileScreen" />
       <Stack.Screen name="PatientDirectory/PatientDirectoryScreen" />
       <Stack.Screen name="AboutUs/AboutUsScreen" />
-    </Stack>
+
+{/* ========= Product Details =============*/}
+      <Stack.Screen name='Product/ProductDetails' />
+     </Stack>
   );
 }

@@ -2,7 +2,7 @@ import { View, Text, StyleSheet,Image, TouchableOpacity } from 'react-native'
 import { Colors, Fonts, Sizes } from '../../constant/styles'
 import { Ionicons } from '@expo/vector-icons'
 
-const ClassesCard = ({item}) => {
+const ClassesCard = ({item,onPress}) => {
   return (
     <View style={{ ...styles.productCard, }}>
             <Image
@@ -21,7 +21,7 @@ const ClassesCard = ({item}) => {
                         <Text style={{ fontSize: Sizes.fixPadding, color:`${Colors.blackColor}CC`, marginBottom: Sizes.fixPadding - 2.0}}>Time :{item.time}</Text>
                 </View>
                     
-                    <TouchableOpacity style={styles.bookButton}>
+                    <TouchableOpacity style={styles.bookButton} onPress={onPress}>
                         <Text style={styles.bookButtonText}>Enroll Now</Text>
                     </TouchableOpacity>
 

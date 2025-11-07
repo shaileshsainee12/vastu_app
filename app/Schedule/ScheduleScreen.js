@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { Fonts, Sizes } from "../../../constant/styles";
-import TabBarScreen from "../../../components/TabBarScreen";
+import { Fonts, Sizes } from "../../constant/styles";
+import TabBarScreen from "../../components/TabBarScreen";
 
 const ScheduleScreen = () => {
     return (

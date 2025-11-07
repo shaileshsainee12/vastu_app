@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Fonts, Sizes } from '../../constant/styles';
-export default function ProductCard({ item, index }) {
+export default function ProductCard({ item, index ,onPress }) {
     return (
         <View style={{ ...styles.productCard, }}>
             <Image
@@ -25,7 +25,7 @@ export default function ProductCard({ item, index }) {
                     <TouchableOpacity style={styles.addIcon}>
                         <Ionicons name="cart-outline" size={20} color={`${Colors.blackColor}`} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.bookButton}>
+                    <TouchableOpacity style={styles.bookButton} onPress={onPress}>
                         <Text style={styles.bookButtonText}>Order Now</Text>
                     </TouchableOpacity>
                 </View>

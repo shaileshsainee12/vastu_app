@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RN DoctorPro",
-    "slug": "rn-doctorPro",
+    "name": "Tatva Vastu",
+    "slug": "tatva-vastu",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "bundleIdentifier": "com.rct.doctorpro",
+      "bundleIdentifier": "com.tatvavastu",
       "buildNumber": "1.0.1",
       "supportsTablet": true
     },
@@ -23,7 +23,7 @@
           "apiKey": "YOUR GOOGLE MAP API KEY HERE"
         }
       },
-      "package": "com.rct.doctorpro",
+      "package": "com.tatvavastu",
       "versionCode": 3
     },
     "web": {

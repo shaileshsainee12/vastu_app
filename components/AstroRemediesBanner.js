@@ -5,7 +5,7 @@ import { Colors, Sizes } from "../constant/styles";
 
 const { width } = Dimensions.get("screen");
 
-const AstroRemediesBanner = () => {
+const AstroRemediesBanner = ({ about, para, off, btnText, onPress }) => {
     return (
         <LinearGradient
             colors={['#FFE689', '#CCA104']}
@@ -14,18 +14,18 @@ const AstroRemediesBanner = () => {
             style={styles.container}
         >
             <View style={styles.textContainer}>
-                <Text style={styles.title}>Shop Authentic Astro{"\n"}Remedies-Energised{"\n"}& Ready to Use</Text>
+                <Text style={styles.title}>{about}</Text>
 
                 <View style={styles.offerRow}>
-                    <Text style={styles.subtitle}>Shop Now and Get</Text>
+                    <Text style={styles.subtitle}>{para}</Text>
                     <View style={styles.offerBox}>
-                        <Text style={styles.offerText}>20% Off</Text>
+                        <Text style={styles.offerText}>{off}</Text>
                     </View>
                 </View>
 
-                <TouchableOpacity activeOpacity={0.8} style={styles.shopButton}>
-                    <Text style={styles.shopButtonText}>Shop Now</Text>
-                </TouchableOpacity>
+               {btnText && <TouchableOpacity activeOpacity={0.8} style={styles.shopButton} onPress={onPress}>
+                    <Text style={styles.shopButtonText}>{btnText}</Text>
+                </TouchableOpacity>}
             </View>
 
 

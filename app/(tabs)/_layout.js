@@ -1,4 +1,4 @@
-import { MaterialIcons, Ionicons, FontAwesome5, Entypo } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons,  Entypo, Feather } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { TouchableOpacity, StyleSheet, View, BackHandler, Text, Pressable } from "react-native";
@@ -63,13 +63,13 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name='Schedule/ScheduleScreen'
+          name='Shop/ShopScreen'
           options={{
             tabBarIcon: ({ focused, color }) => focused ?
               <View style={styles.circleStyle}>
-                <FontAwesome5 name="calendar-alt" size={24} color={color} />
+                <Feather name="shopping-bag" size={24} color={color}  />
               </View>
-              : <FontAwesome5 name="calendar-alt" size={24} color={color} />
+              : <Feather name="shopping-bag" size={24} color={color}  />
           }}
         />
         <Tabs.Screen

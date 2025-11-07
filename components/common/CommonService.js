@@ -41,7 +41,7 @@ const CommonService = ({ data, title }) => {
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 data={data}
-                title={title}
+                // title={title}
                 keyExtractor={(item) => `${item.id}`}
                 renderItem={renderItem}
                 contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding }}
