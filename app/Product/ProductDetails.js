@@ -12,6 +12,7 @@ import {
 import { Feather, Ionicons, Octicons } from '@expo/vector-icons';
 import { Colors, Sizes, Fonts } from '../../constant/styles';
 import ReviewsCard from '../../components/common/ReviewsCard';
+import { useNavigation } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
@@ -58,6 +59,7 @@ const reviews = [
 const ProductDetails = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const flatListRef = useRef(null);
+    const navigation = useNavigation();
 
     // 🔁 Auto Scroll Effect
     useEffect(() => {
@@ -83,7 +85,7 @@ const ProductDetails = () => {
         <View style={{ flex: 1, backgroundColor: 'white' }}>
             {header()}
 
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 30 }}>
+            <ScrollView showsVerticalScrollIndicator={false} >
                 {/* Product Image Slider */}
                 <View style={styles.sliderContainer}>
                     <FlatList
@@ -122,7 +124,7 @@ const ProductDetails = () => {
                     </View>
                 </View>
 
-                {/* Product Details */}
+                {/*========= Product Details  ===================*/}
                 <View style={styles.detailsContainer}>
                     <Text style={styles.productTitle}>7 Mukhi Rudraksha</Text>
 
@@ -149,25 +151,46 @@ const ProductDetails = () => {
                         ))}
                     </View>
                 </View>
+                {/* =========  Reviews Section ========== */}
 
                 <View style={styles.reviewsContainer}>
-                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginVertical: Sizes.fixPadding }}>
+                    <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: Sizes.fixPadding + 8.0 }}>
 
                         <Text style={styles.reviewHeading}>Reviews</Text>
-                        <Text style={{ ...Fonts.black16Bold, color: Colors.primary,marginBottom:2 }}>View All</Text>
+                        <Text style={{ ...Fonts.black18Bold, color: Colors.primary, }} onPress={()=>navigation.navigate("Review/ReviewScreen")}>View All</Text>
                     </View>
                     {reviews.map((item) => (
                         <ReviewsCard key={item.id} item={item} />
                     ))}
                 </View>
+
             </ScrollView>
+            <View style={{
+                padding: 10,
+                backgroundColor: 'white',
+                elevation: 10,
+                shadowColor: Colors.blackColor,
+                shadowOffset: { width: 3, height: -10 },
+                shadowOpacity: 0.7,
+                shadowRadius: 10,
+            }}>
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, justifyContent: 'space-between',paddingHorizontal:10 }}>
+                    <TouchableOpacity style={styles.addIcon}>
+                        <Ionicons name="cart-outline" size={24} color={`${Colors.blackColor}`} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.bookButton} >
+                        <Text style={styles.bookButtonText}>Order Now</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+
         </View>
     );
 
     function header() {
         return (
             <View style={styles.headerStyle}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Feather name="arrow-left" size={24} color="black" />
                         <Text style={{ ...Fonts.black18Bold, marginLeft: 10.0 }}>Details</Text>
@@ -188,7 +211,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingVertical: Sizes.fixPadding,
+        paddingVertical: Sizes.fixPadding + 6.0,
         paddingHorizontal: Sizes.fixPadding * 2.0,
         backgroundColor: Colors.whiteColor,
         elevation: 4,
@@ -196,7 +219,7 @@ const styles = StyleSheet.create({
     sliderContainer: {
         height: width * 0.8,
         marginHorizontal: Sizes.fixPadding * 2.0,
-        marginTop: Sizes.fixPadding * 7.0,
+        marginTop: Sizes.fixPadding * 8.0,
 
     },
     productImage: {
@@ -224,19 +247,15 @@ const styles = StyleSheet.create({
         marginTop: Sizes.fixPadding * 2.0,
     },
     productTitle: {
-        fontSize: Sizes.fixPadding + 8.0,
-        fontWeight: '600',
+        ...Fonts.black18Bold,
         marginBottom: 5,
-        color: Colors.blackColor,
     },
     priceContainer: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     discountedPrice: {
-        fontSize: Sizes.fixPadding + 8.0,
-        fontWeight: 'bold',
-        color: Colors.blackColor,
+        ...Fonts.black18Bold
     },
     originalPrice: {
         fontSize: Sizes.fixPadding + 4.0,
@@ -289,12 +308,27 @@ const styles = StyleSheet.create({
         borderRadius: Sizes.fixPadding - 2.0,
     },
     reviewHeading: {
-        fontSize: Sizes.fixPadding + 8.0,
-        fontWeight: '600',
-        marginBottom:Sizes.fixPadding ,
-        color: Colors.blackColor,
+        ...Fonts.black18Bold,
+
     },
-   
+    addIcon: {
+        backgroundColor: `${Colors.primary}33`,
+       paddingHorizontal: Sizes.fixPadding + 4.0,
+        paddingVertical: Sizes.fixPadding,
+        borderRadius: 5
+    },
+    bookButton: {
+        width:"75%",
+        backgroundColor: Colors.primary,
+        paddingHorizontal: Sizes.fixPadding + 4.0,
+        paddingVertical: Sizes.fixPadding,
+        borderRadius: Sizes.fixPadding,
+        alignItems: 'center',
+    },
+    bookButtonText: {
+        ...Fonts.white18Bold
+    },
+
 });
 
 export default ProductDetails;

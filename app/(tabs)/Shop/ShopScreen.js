@@ -14,7 +14,7 @@ import { Ionicons, FontAwesome, Feather } from '@expo/vector-icons';
 import { Fonts, Colors, Sizes, } from "../../../constant/styles";
 import { useNavigation } from "expo-router";
 import AstroRemediesBanner from "../../../components/AstroRemediesBanner";
-import { LinearGradient } from "expo-linear-gradient";
+import { useCart } from '../../context/CartContext';
 import ProductCard from "../../../components/common/ProductCard";
 const { width, height } = Dimensions.get("window");
 const CARD_WIDTH = (width - 45) / 2;
@@ -46,68 +46,47 @@ const categoryListData = [
         image: require('../../../assets/images/product/Gemstones.png'),
     }
 ]
-const productsList = [
+const products = [
     {
         id: '1',
         image: require('../../../assets/images/kachhuaa.png'),
         name: '7 Mukhi Rudraksha',
         price: 50,
-        discountPrice: 25,
+        oldPrice: 25,
     },
     {
         id: '2',
         image: require('../../../assets/images/Home/Rudraksh.png'),
         name: 'Rudraksh',
         price: 75,
-        discountPrice: 50,
+        oldPrice: 50,
     },
     {
         id: '3',
         image: require('../../../assets/images/Lari.png'),
         name: 'Locket',
         price: 40,
-        discountPrice: 20,
+        oldPrice: 20,
     },
     {
         id: '4',
         image: require('../../../assets/images/lion.png'),
         name: 'Lion',
         price: 60,
-        discountPrice: 30,
-    },
-];
-const products = [
-    {
-        id: "1",
-        name: "7 Mukhi Rudraksha",
-        price: "₹8,399",
-        oldPrice: "₹12,200",
-        image: require("../../../assets/images/Home/Rudraksh.png"),
+        oldPrice: 30,
     },
     {
-        id: "2",
-        name: "Kachhuaa",
-        price: "₹8,399",
-        oldPrice: "₹12,200",
-        image: require("../../../assets/images/kachhuaa.png"),
-    },
-    {
-        id: "3",
+        id: "5",
         name: "Bracelet",
-        price: "₹8,399",
-        oldPrice: "₹12,200",
+        price: 8399,
+        oldPrice: 12200,
         image: require("../../../assets/images/stone.png"),
     },
-    {
-        id: "4",
-        name: "Lari",
-        price: "₹8,399",
-        oldPrice: "₹12,200",
-        image: require("../../../assets/images/Lari.png"),
-    },
 ];
+
 const ShopScreen = () => {
     const navigation = useNavigation();
+    const { addItem } = useCart();
     const [showAddressSheet, setShowAddressSheet] = useState(false);
     return (
         <View style={{ flex: 1, backgroundColor: 'white', }}>
@@ -130,9 +109,14 @@ const ShopScreen = () => {
                         <FlatList
                             horizontal
                             showsHorizontalScrollIndicator={true}
-                            data={productsList}
+                            data={products}
                             keyExtractor={(item) => `${item.id}`}
-                            renderItem={({ item }) => <ProductCard item={item} />}
+                            renderItem={({ item }) => (
+                                <ProductCard 
+                                    item={{...item, image: item.image}} 
+                                    onPress={() => navigation.push('Product/ProductDetails', { name: item.name })}
+                                />
+                            )}
                             contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0 }}
                         />
                         <Text style={{ ...Fonts.black18Bold, margin: Sizes.fixPadding * 2.0, }}>
@@ -153,8 +137,8 @@ const ShopScreen = () => {
             <View style={styles.headerStyle}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <View style={{ display: "flex", flexDirection: "row", alignItems: 'center', justifyContent: "center" }}>
-                        <FontAwesome name="long-arrow-left" size={24} color={Colors.primary} />
-                        <Text style={{ fontSize: 18, fontWeight: 'bold', marginLeft: 10.0 }}>Product</Text>
+                        <FontAwesome name="long-arrow-left" size={18} color={Colors.blackColor} />
+                        <Text style={{...Fonts.black18Bold, marginLeft: 5.0 }}>Product</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={{
@@ -166,7 +150,7 @@ const ShopScreen = () => {
                     elevation: 4,
                     borderRadius: "50%"
                 }}>
-                    <Ionicons name="cart-outline" size={24} color={Colors.primary} onPress={() => navigation.push('Notifications/NotificationScreen')} />
+                    <Ionicons name="cart-outline" size={24} color={Colors.primary} onPress={() => navigation.push('cart/CartScreen')} />
                 </View>
 
             </View>
@@ -242,14 +226,25 @@ const ShopScreen = () => {
                 <View style={styles.infoContainer}>
                     <Text style={styles.name} numberOfLines={1}>{item.name}</Text>
                     <View style={styles.priceContainer}>
-                        <Text style={styles.price}>{item.price}</Text>
-                        <Text style={styles.oldPrice}>{item.oldPrice}</Text>
+                        <Text style={styles.price}>₹{item.price}</Text>
+                        <Text style={styles.oldPrice}>₹{item.oldPrice}</Text>
                     </View>
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 10, marginVertical: Sizes.fixPadding }}>
-                        <TouchableOpacity style={styles.addIcon}>
+                        <TouchableOpacity 
+                            style={styles.addIcon}
+                            onPress={() => {
+                                addItem({
+                                    id: item.id,
+                                    title: item.name,
+                                    price: parseFloat(item.price?.replace('₹', '').replace(',', '') || 0),
+                                    image: item.image
+                                });
+                            }}>
                             <Ionicons name="cart-outline" size={20} color={`${Colors.blackColor}`} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.bookButton}>
+                        <TouchableOpacity style={styles.bookButton} onPress={() =>
+                                    navigation.push('Product/ProductDetails', { name: item.name })
+                                }>
                             <Text style={styles.bookButtonText}>Order Now</Text>
                         </TouchableOpacity>
                     </View>

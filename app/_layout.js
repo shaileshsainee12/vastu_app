@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { AppState, StatusBar } from 'react-native';
+import { CartProvider } from './context/CartContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,7 +32,8 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false,animation:'ios_from_right' }}>
+    <CartProvider>
+      <Stack screenOptions={{ headerShown: false,animation:'ios_from_right' }}>
       <Stack.Screen name="index" />
       <Stack.Screen name="Auth/WelcomeScreen" options={{ gestureEnabled: false }} />
       <Stack.Screen name="Auth/RegisterScreen" options={{ gestureEnabled: false }} />
@@ -54,6 +56,11 @@ export default function RootLayout() {
 
 {/* ========= Product Details =============*/}
       <Stack.Screen name='Product/ProductDetails' />
+      <Stack.Screen name='cart/CartScreen' />
+      <Stack.Screen name='MyProfile/MyProfileScreen' />
+      <Stack.Screen name='Address/AddressListScreen' />
+      <Stack.Screen name='Address/AddNewAddressScreen' />
      </Stack>
+    </CartProvider>
   );
 }

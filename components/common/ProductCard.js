@@ -1,7 +1,16 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { Colors, Fonts, Sizes } from '../../constant/styles';
+import { useCart } from '../../app/context/CartContext';
 export default function ProductCard({ item, index ,onPress }) {
+    const { addItem } = useCart();
+
+    const handleAddToCart = () => {
+        const id = item.id ?? item.productId ?? index;
+        const price = item.discountPrice ?? item.price ?? 0;
+        addItem({ id, title: item.name || item.title || 'Product', price, image: item.image }, 1);
+        Alert.alert('Cart', `${item.name || item.title || 'Product'} added to cart`);
+    }
     return (
         <View style={{ ...styles.productCard, }}>
             <Image
@@ -17,12 +26,12 @@ export default function ProductCard({ item, index ,onPress }) {
                 <View>
                     <Text style={{ ...Fonts.blackBold, fontSize: Sizes.fixPadding + 2 }}>{item.name}</Text>
                     <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                        <Text style={{ fontSize: Sizes.fixPadding + 4, fontWeight: 'bold', }}>₹{item.discountPrice} </Text>
+                        <Text style={{ fontSize: Sizes.fixPadding + 4, fontWeight: 'bold', }}>₹{item.oldPrice} </Text>
                         <Text style={{ fontSize: Sizes.fixPadding, color: Colors.grayColor, marginLeft: 5, textDecorationLine: 'line-through' }}>₹{item.price}</Text>
                     </View>
                 </View>
                 <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 10 }}>
-                    <TouchableOpacity style={styles.addIcon}>
+                    <TouchableOpacity style={styles.addIcon} onPress={handleAddToCart}>
                         <Ionicons name="cart-outline" size={20} color={`${Colors.blackColor}`} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.bookButton} onPress={onPress}>

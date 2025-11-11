@@ -53,34 +53,41 @@ const astrologersList = [
     },
 ];
 
-const productsList = [
+const products = [
     {
         id: '1',
         image: require('../../../assets/images/kachhuaa.png'),
         name: '7 Mukhi Rudraksha',
         price: 50,
-        discountPrice: 25,
+        oldPrice: 25,
     },
     {
         id: '2',
         image: require('../../../assets/images/Home/Rudraksh.png'),
         name: 'Rudraksh',
         price: 75,
-        discountPrice: 50,
+        oldPrice: 50,
     },
     {
         id: '3',
         image: require('../../../assets/images/Lari.png'),
         name: 'Locket',
         price: 40,
-        discountPrice: 20,
+        oldPrice: 20,
     },
     {
         id: '4',
         image: require('../../../assets/images/lion.png'),
         name: 'Lion',
         price: 60,
-        discountPrice: 30,
+        oldPrice: 30,
+    },
+    {
+        id: "5",
+        name: "Bracelet",
+        price: 8399,
+        oldPrice: 12200,
+        image: require("../../../assets/images/stone.png"),
     },
 ];
 
@@ -198,13 +205,14 @@ const HomeScreen = () => {
                         <FlatList
                             horizontal
                             showsHorizontalScrollIndicator={true}
-                            data={productsList}
+                            data={products}
                             keyExtractor={(item) => `${item.id}`}
-                            renderItem={({ item }) => <ProductCard item={item}
-                                onPress={() =>
-                                    navigation.push('Product/ProductDetails', { name: item.name })
-                                }
-                            />}
+                            renderItem={({ item }) => (
+                                <ProductCard
+                                    item={{ ...item, image: item.image }}
+                                    onPress={() => navigation.push('Product/ProductDetails', { name: item.name })}
+                                />
+                            )}
                             contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0 }}
                         />
                         {titleWithButton({ title: 'Classes', btnText: "View All" })}
@@ -230,7 +238,7 @@ const HomeScreen = () => {
     function header() {
         return (
             <View style={styles.headerStyle}>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => navigation.push('MyProfile/MyProfileScreen')}>
                     <View style={{ display: "flex", flexDirection: "row", alignItems: 'center', justifyContent: "center" }}>
                         <FontAwesome name="user-circle" size={24} color={Colors.primary} />
                         <Text style={{ ...Fonts.black18Bold, marginLeft: 10.0 }}>Hello, User Name</Text>
@@ -245,7 +253,7 @@ const HomeScreen = () => {
                     elevation: 4,
                     borderRadius: "50%"
                 }}>
-                    <Ionicons name="cart-outline" size={24} color={Colors.primary} onPress={() => navigation.push('Notifications/NotificationScreen')} />
+                    <Ionicons name="cart-outline" size={24} color={Colors.primary} onPress={() => navigation.push('cart/CartScreen')} />
                 </View>
 
             </View>
