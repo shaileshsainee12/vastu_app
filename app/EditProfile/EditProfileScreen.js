@@ -9,19 +9,17 @@ import {
   Dimensions,
   ScrollView,
   Modal,
-  Platform
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Fonts, Colors, Sizes } from "../../constant/styles";
 import MyStatusBar from "../../components/myStatusBar";
 import * as ImagePicker from "expo-image-picker";
-import { useNavigation } from "expo-router";
 import { Picker } from "@react-native-picker/picker";
+import Header from "../../components/common/Header";
 // import DateTimePicker from "@react-native-community/datetimepicker";
 const { width } = Dimensions.get("screen");
 
 const EditProfileScreen = () => {
-  const navigation = useNavigation();
   const [isBottomSheet, setIsBottomSheet] = useState(false);
   const [profileImage, setProfileImage] = useState(require("../../assets/images/user/user_2.jpg"));
   const [fullName, setFullName] = useState("John Doe");
@@ -92,7 +90,7 @@ const EditProfileScreen = () => {
     <View style={{ flex: 1, backgroundColor: "#FAF9F7" }}>
       <MyStatusBar />
       <View style={{ flex: 1 }}>
-        {backArrowAndSave()}
+        <Header title="Details" />
         <ScrollView
           showsVerticalScrollIndicator={false}
           automaticallyAdjustKeyboardInsets={true}
@@ -198,22 +196,6 @@ const EditProfileScreen = () => {
     </View>
   );
 
-  // Header with Back and Save
-  function backArrowAndSave() {
-    return (
-      <View style={styles.headerStyle}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Ionicons
-            name="arrow-back-outline"
-            size={24}
-            color="black"
-            onPress={() => navigation.pop()}
-          />
-          <Text style={{ ...Fonts.black18Bold, marginLeft: 10.0 }}>Details</Text>
-        </View>
-      </View>
-    );
-  }
 
   // ✅ Bottom Sheet
   function showBottomSheet() {
@@ -287,16 +269,6 @@ const EditProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  headerStyle: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: Sizes.fixPadding * 2.0,
-    paddingVertical: Sizes.fixPadding * 1.2,
-    borderBottomWidth: 0.6,
-    borderBottomColor: Colors.lightGray,
-    backgroundColor: Colors.whiteColor,
-  },
   imageContainer: {
     alignItems: "center",
     marginVertical: Sizes.fixPadding * 3,
@@ -325,20 +297,23 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     borderWidth: 1,
-    borderColor: Colors.lightGrayColor,
+    height: 40,
+     backgroundColor: `${Colors.inputbgColor}`,
+    borderColor: Colors.grayColor,
     borderRadius: Sizes.fixPadding,
     marginBottom: Sizes.fixPadding * 1.5,
   },
   picker: {
-    height: 50,
+    paddingTop: 0, position: 'absolute', top: -7,
     paddingVertical: 0,
     width: "100%",
     ...Fonts.black16Regular,
   },
   input: {
-    height: 50,
+    height: 40,
     borderWidth: 1,
-    borderColor: Colors.lightGrayColor,
+    backgroundColor: `${Colors.inputbgColor}`,
+    borderColor: Colors.grayColor,
     borderRadius: Sizes.fixPadding,
     paddingHorizontal: Sizes.fixPadding + 5,
     ...Fonts.blackRegular,

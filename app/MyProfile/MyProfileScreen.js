@@ -16,6 +16,7 @@ import {
   Feather,
 } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
+import Header from "../../components/common/Header";
 
 const MyProfileScreen = () => {
   const profileMenu1 = [
@@ -31,7 +32,7 @@ const MyProfileScreen = () => {
 
   const profileMenu2 = [
     { id: 1, icon: "headphones", label: "Help And Support" },
-    { id: 2, icon: "settings-outline", label: "Setting", type: "ion" },
+    { id: 2, icon: "settings-outline", label: "Setting", type: "ion", link: "Setting/SettingScreen" },
     { id: 3, icon: "information-outline", label: "Terms & Conditions" },
     { id: 4, icon: "file-document-outline", label: "Privacy/Policy" },
     { id: 5, icon: "refresh", label: "Refund Policy" },
@@ -40,7 +41,7 @@ const MyProfileScreen = () => {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.whiteColor }}>
-      {header()}
+      <Header title="My profile" />
       <ScrollView contentContainerStyle={{ padding: Sizes.fixPadding * 1.5 }}>
         {profileHeader()}
 
@@ -60,20 +61,6 @@ const MyProfileScreen = () => {
     </SafeAreaView>
   );
 
-  // ================= Header ==================
-  function header() {
-    return (
-      <View style={styles.headerStyle}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <View style={{ display: "flex", flexDirection: "row", alignItems: 'center', justifyContent: "center" }}>
-            <Ionicons name="arrow-back" size={22} color={Colors.blackColor} />
-            <Text style={{ ...Fonts.black18Bold, marginLeft: 10.0 }}>My profile</Text>
-          </View>
-        </TouchableOpacity>
-
-      </View>
-    );
-  }
 
   // ================= Profile Top Section ==================
   function profileHeader() {
@@ -138,21 +125,11 @@ const MyProfileScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  headerStyle: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: Sizes.fixPadding * 2.0,
-    paddingVertical: Sizes.fixPadding * 1.2,
-    borderBottomWidth: 0.6,
-    borderBottomColor: Colors.lightGray,
-    backgroundColor: Colors.whiteColor,
-  },
   profileBox: {
     flexDirection: "row",
     alignItems: "center",
     padding: Sizes.fixPadding,
-    borderRadius: 10,
+    borderRadius: Sizes.fixPadding,
     backgroundColor: Colors.whiteColor,
     elevation: 2,
     shadowColor: Colors.blackColor,
@@ -164,12 +141,12 @@ const styles = StyleSheet.create({
   profileImage: {
     height: 60,
     width: 60,
-    borderRadius: 30,
+    borderRadius: Sizes.fixPadding * 3.0,
   },
   cardContainer: {
     borderWidth: 1,
     borderColor: Colors.lightGray,
-    borderRadius: 10,
+    borderRadius: Sizes.fixPadding,
     backgroundColor: Colors.whiteColor,
     marginBottom: Sizes.fixPadding * 2.0,
     paddingVertical: Sizes.fixPadding,
@@ -182,12 +159,12 @@ const styles = StyleSheet.create({
   },
   logoutButton: {
     backgroundColor: Colors.primary, // Gold yellow tone
-    borderRadius: 8,
+    borderRadius: Sizes.fixPadding - 2.0,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 12,
-    marginBottom: 30,
+    paddingVertical: Sizes.fixPadding + 2.0,
+    marginBottom: Sizes.fixPadding * 3.0,
   },
 });
 

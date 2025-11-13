@@ -13,6 +13,7 @@ import { Feather, Ionicons, Octicons } from '@expo/vector-icons';
 import { Colors, Sizes, Fonts } from '../../constant/styles';
 import ReviewsCard from '../../components/common/ReviewsCard';
 import { useNavigation } from 'expo-router';
+import { useCart } from '../context/CartContext';
 
 const { width } = Dimensions.get('window');
 
@@ -60,6 +61,17 @@ const ProductDetails = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const flatListRef = useRef(null);
     const navigation = useNavigation();
+    const { addItem } = useCart();
+
+    const parsePrice = (p) => {
+        if (!p && p !== 0) return 0;
+        try {
+            const s = String(p).replace(/[^0-9.]/g, '');
+            return parseFloat(s) || 0;
+        } catch (e) {
+            return 0;
+        }
+    };
 
     // 🔁 Auto Scroll Effect
     useEffect(() => {
@@ -165,24 +177,41 @@ const ProductDetails = () => {
                 </View>
 
             </ScrollView>
-            <View style={{
-                padding: 10,
-                backgroundColor: 'white',
-                elevation: 10,
-                shadowColor: Colors.blackColor,
-                shadowOffset: { width: 3, height: -10 },
-                shadowOpacity: 0.7,
-                shadowRadius: 10,
-            }}>
-                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, justifyContent: 'space-between',paddingHorizontal:10 }}>
-                    <TouchableOpacity style={styles.addIcon}>
-                        <Ionicons name="cart-outline" size={24} color={`${Colors.blackColor}`} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.bookButton} >
-                        <Text style={styles.bookButtonText}>Order Now</Text>
-                    </TouchableOpacity>
+                <View style={{
+                    padding: 10,
+                    backgroundColor: 'white',
+                    elevation: 10,
+                    shadowColor: Colors.blackColor,
+                    shadowOffset: { width: 3, height: -10 },
+                    shadowOpacity: 0.7,
+                    shadowRadius: 10,
+                }}>
+                    <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, justifyContent: 'space-between', paddingHorizontal: 10 }}>
+                        <TouchableOpacity
+                            style={styles.addIcon}
+                            onPress={() => {
+                                const title = '7 Mukhi Rudraksha';
+                                const priceString = '₹1,199';
+                                const price = parsePrice(priceString);
+                                addItem({ id: title, title, price, image: images[activeIndex] }, 1);
+                            }}
+                        >
+                            <Ionicons name="cart-outline" size={24} color={`${Colors.blackColor}`} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.bookButton}
+                            onPress={() => {
+                                const title = '7 Mukhi Rudraksha';
+                                const priceString = '₹1,199';
+                                const price = parsePrice(priceString);
+                                addItem({ id: title, title, price, image: images[activeIndex] }, 1);
+                                navigation.push('cart/ReviewYourOrder');
+                            }}
+                        >
+                            <Text style={styles.bookButtonText}>Order Now</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
 
         </View>
     );

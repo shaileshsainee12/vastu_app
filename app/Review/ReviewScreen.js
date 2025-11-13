@@ -1,10 +1,11 @@
-import React from "react";
-import { Text, View, FlatList, Image, StyleSheet } from "react-native";
+
+import { Text, View, FlatList, StyleSheet } from "react-native";
 import { Fonts, Colors, Sizes, CommonStyles } from "../../constant/styles";
-import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
+import {MaterialIcons } from '@expo/vector-icons';
 import MyStatusBar from "../../components/myStatusBar";
 import { useNavigation } from "expo-router";
 import ReviewsCard from "../../components/common/ReviewsCard";
+import Header from "../../components/common/Header";
 
 const userList = [
     {
@@ -77,49 +78,23 @@ const ReviewScreen = () => {
 
     const navigation = useNavigation();
 
-    const renderItem = ({ item }) => (
-        <View style={styles.reviewInfoContainerStyle}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <Image
-                    source={item.image}
-                    style={{ width: 80.0, height: 80.0, borderRadius: Sizes.fixPadding * 4.0, }}
-                    resizeMode="contain"
-                />
-                <View style={{ marginLeft: Sizes.fixPadding * 2.0 }}>
-                    <Text style={{ ...Fonts.black16Bold }}>{item.name}</Text>
-                    <Text style={{ ...Fonts.gray14Regular }}>{item.date}</Text>
-                    <View style={styles.ratingContainerStyle}>
-                        <FontAwesome name="star" size={18} color="#CDDC39" style={{ marginRight: Sizes.fixPadding - 5.0 }} />
-                        <FontAwesome name="star" size={18} color="#CDDC39" style={{ marginRight: Sizes.fixPadding - 5.0 }} />
-                        <FontAwesome name="star" size={18} color="#CDDC39" style={{ marginRight: Sizes.fixPadding - 5.0 }} />
-                        <FontAwesome name="star" size={18} color="#CDDC39" style={{ marginRight: Sizes.fixPadding - 5.0 }} />
-                        <FontAwesome name="star" size={18} color="#CDDC39" style={{ marginRight: Sizes.fixPadding - 5.0 }} />
-                    </View>
-                </View>
-            </View>
-            <Text style={{ ...Fonts.black16Regular, marginTop: Sizes.fixPadding }}>
-                {item.review}
-            </Text>
-        </View>
-    )
-
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
             <MyStatusBar />
-            {header()}
+            <Header title="Reviews" />
             <FlatList
                 data={userList}
                 keyExtractor={(item) => `${item.id}`}
                 renderItem={({ item }) => <ReviewsCard item={item} />}
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0, paddingVertical: Sizes.fixPadding }}
+                contentContainerStyle={{ paddingHorizontal: Sizes.fixPadding * 2.0, paddingVertical: Sizes.fixPadding * 1.5 }}
             />
         </View>
     )
 
     function header() {
         return (
-            <View style={styles.headerWrapStyle}>
+            <View>
                 <MaterialIcons
                     name="arrow-back"
                     color={'black'}
@@ -133,33 +108,5 @@ const ReviewScreen = () => {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    headerWrapStyle: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        elevation: 2.0,
-        ...CommonStyles.shadow,
-        marginBottom: Sizes.fixPadding,
-        backgroundColor: Colors.whiteColor,
-        paddingHorizontal: Sizes.fixPadding * 2.0,
-        paddingVertical: Sizes.fixPadding + 5.0,
-    },
-    reviewInfoContainerStyle: {
-        borderWidth: 1.0,
-        borderColor: Colors.lightGray,
-        padding: Sizes.fixPadding * 2.0,
-        borderRadius: Sizes.fixPadding + 5.0,
-        elevation: 3.0,
-        backgroundColor: 'white',
-        marginBottom: Sizes.fixPadding * 2.0,
-        ...CommonStyles.shadow
-    },
-    ratingContainerStyle: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: Sizes.fixPadding - 5.0
-    }
-})
 
 export default ReviewScreen;

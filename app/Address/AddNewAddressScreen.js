@@ -13,6 +13,7 @@ import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "expo-router";
 import { useCart } from "../context/CartContext";
 import { Colors, Fonts, Sizes } from "../../constant/styles";
+import Header from "../../components/common/Header";
 
 const AddNewAddressScreen = () => {
     const { addresses, setAddresses } = useCart()
@@ -67,7 +68,7 @@ const AddNewAddressScreen = () => {
     return (
         <View style={{ flex: 1, backgroundColor: Colors.whiteColor }}>
             {/* Header */}
-            {header()}
+            <Header title="Add New Address" />
 
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -200,32 +201,9 @@ const AddNewAddressScreen = () => {
             </View>
         </View>
     );
-    function header() {
-        return (
-            <View style={styles.headerStyle}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <View style={{ display: "flex", flexDirection: "row", alignItems: 'center', justifyContent: "center" }}>
-                        <Ionicons name="arrow-back" size={22} color={Colors.blackColor} />
-                        <Text style={{ ...Fonts.black18Bold, marginLeft: 10.0 }}>Add New Address</Text>
-                    </View>
-                </TouchableOpacity>
-
-            </View>
-        );
-    }
 };
 
 const styles = StyleSheet.create({
-    headerStyle: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingHorizontal: Sizes.fixPadding * 2.0,
-        paddingVertical: Sizes.fixPadding * 1.5,
-        borderBottomWidth: 0.6,
-        borderBottomColor: Colors.lightGray,
-        backgroundColor: Colors.whiteColor,
-    },
     headerText: {
         fontSize: 18,
         fontWeight: "bold",
@@ -243,7 +221,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        backgroundColor: `${Colors.lightGray}AA`,
+        backgroundColor: `${Colors.inputbgColor}`,
         borderColor: Colors.grayColor,
         borderRadius: 8,
         padding: 10,
@@ -282,7 +260,7 @@ const styles = StyleSheet.create({
     pickerContainer: {
         height: 40,
         borderWidth: 1,
-        backgroundColor: `${Colors.lightGray}AA`,
+        backgroundColor: `${Colors.inputbgColor}`,
         borderColor: Colors.grayColor,
         borderRadius: 8,
         // marginBottom: 10,

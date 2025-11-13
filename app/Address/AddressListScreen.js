@@ -11,6 +11,7 @@ import { Colors, Fonts, Sizes } from "../../constant/styles";
 import MyStatusBar from "../../components/myStatusBar";
 import { useNavigation } from "expo-router";
 import { useCart } from "../context/CartContext";
+import Header from "../../components/common/Header";
 
 const AddressListScreen = () => {
   const { addresses } = useCart();
@@ -22,7 +23,7 @@ const AddressListScreen = () => {
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ ...Fonts.black16Bold }}>{item.locationType}</Text>
         <TouchableOpacity>
-          
+
           <Feather name="edit" size={20} color={Colors.primary} />
         </TouchableOpacity>
       </View>
@@ -42,7 +43,7 @@ const AddressListScreen = () => {
     <View style={{ flex: 1, backgroundColor: Colors.whiteColor }}>
 
       {/* Header */}
-      {header()}
+      <Header title="Saved Address" />
 
       {/* Address List */}
       <FlatList
@@ -58,35 +59,12 @@ const AddressListScreen = () => {
       />
     </View>
   );
-  // ================= Header ==================
-  function header() {
-    return (
-      <View style={styles.headerStyle}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <View style={{ display: "flex", flexDirection: "row", alignItems: 'center', justifyContent: "center" }}>
-            <Ionicons name="arrow-back" size={22} color={Colors.blackColor} />
-            <Text style={{ ...Fonts.black18Bold, marginLeft: 10.0 }}>Saved Address</Text>
-          </View>
-        </TouchableOpacity>
 
-      </View>
-    );
-  }
 };
 
 export default AddressListScreen;
 
 const styles = StyleSheet.create({
-  headerStyle: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: Sizes.fixPadding * 2.0,
-    paddingVertical: Sizes.fixPadding * 1.2,
-    borderBottomWidth: 0.6,
-    borderBottomColor: Colors.lightGray,
-    backgroundColor: Colors.whiteColor,
-  },
   cardContainer: {
     backgroundColor: Colors.whiteColor,
     borderRadius: Sizes.fixPadding,

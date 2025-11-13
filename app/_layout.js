@@ -60,6 +60,7 @@ export default function RootLayout() {
       <Stack.Screen name='MyProfile/MyProfileScreen' />
       <Stack.Screen name='Address/AddressListScreen' />
       <Stack.Screen name='Address/AddNewAddressScreen' />
+      <Stack.Screen name='Setting/SettingsScreen' />
      </Stack>
     </CartProvider>
   );

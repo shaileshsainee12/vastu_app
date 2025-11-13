@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Text, View, ImageBackground, BackHandler, StatusBar, TouchableOpacity, StyleSheet, } from "react-native";
 import { Colors, CommonStyles, Fonts, Sizes } from "../../constant/styles";
 import IntlPhoneInput from 'react-native-intl-phone-input';
@@ -9,6 +9,7 @@ import { FontAwesome } from '@expo/vector-icons';
 const WelcomeScreen = () => {
 
     const navigation = useNavigation();
+    const [islogin, setIsLogin] = useState(true);
 
     const backAction = () => {
         backClickCount == 1 ? BackHandler.exitApp() : _spring();
@@ -24,6 +25,11 @@ const WelcomeScreen = () => {
         }, [backAction])
     );
 
+    useEffect(()=>{
+       if(islogin){
+        navigation.push('(tabs)')
+       }
+    },[islogin])
     function _spring() {
         setBackClickCount(1);
         setTimeout(() => {

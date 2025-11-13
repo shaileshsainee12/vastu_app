@@ -2,6 +2,7 @@ import { View, Text, StyleSheet,Image } from 'react-native'
 import React from 'react'
 import StarRating from './StarRating'
 import { Colors, Fonts, Sizes } from '../../constant/styles'
+import { Ionicons, } from '@expo/vector-icons'
 
 const ReviewsCard = ({ item }) => {
     return (
@@ -10,7 +11,7 @@ const ReviewsCard = ({ item }) => {
                 <Image source={item.image} style={styles.reviewImage} />
                 <View style={{ flex: 1 }}>
                     <Text style={styles.reviewerName}>{item.name}</Text>
-                    <Text style={styles.reviewDate}>{item.date}</Text>
+                    <View style={styles.reviewDate}><Ionicons name="time-outline"  color="black" /><Text>{item.date}</Text></View>
                 </View>
                 <View>
                     <Text style={{ ...Fonts.black15Bold }}>{item.rating} <Text style={{ ...Fonts.blackRegular, fontSize: 12 }}>Rating</Text></Text>
@@ -24,8 +25,6 @@ const ReviewsCard = ({ item }) => {
 
 const styles = StyleSheet.create({
      reviewCard: {
-        borderBottomWidth: 1,
-        borderBottomColor: Colors.lightGray,
         paddingBottom: Sizes.fixPadding ,
         marginBottom: Sizes.fixPadding,
     },
@@ -46,6 +45,9 @@ const styles = StyleSheet.create({
         color: Colors.blackColor,
     },
     reviewDate: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 4,
         fontSize: Sizes.fixPadding + 2.0,
         color: Colors.grayColor,
     },

@@ -1,10 +1,11 @@
 export const Colors = {
     primary: '#CDA202',
-    cardColor:'#faf6e6',
+    cardColor: '#faf6e6',
     lightGray: '#DBDBDB',
     whiteColor: '#ffffff',
     blackColor: '#000000',
-    grayColor:'#9c9c9c'
+    grayColor: '#9c9c9c',
+    inputbgColor: '#f0f0f0ff',
 }
 
 export const Fonts = {
@@ -13,7 +14,11 @@ export const Fonts = {
         fontFamily: 'Lato_Regular',
         color: Colors.blackColor,
     },
-
+    black14Regular: {
+        fontFamily: 'Lato_Regular',
+        fontSize: 14.0,
+        color: Colors.blackColor,
+    },
     black18Regular: {
         fontFamily: 'Lato_Regular',
         fontSize: 18.0,

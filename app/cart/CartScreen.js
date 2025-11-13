@@ -2,7 +2,8 @@ import React from 'react';
 import { SafeAreaView, View, Text, FlatList, TouchableOpacity, Image, Alert, StyleSheet, Platform } from 'react-native';
 import { useCart } from '../context/CartContext';
 import { Colors, Fonts, Sizes } from '../../constant/styles';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
+import Header from '../../components/common/Header';
 
 const CartScreen = ({ navigation }) => {
     const { items, updateQuantity, removeItem, clearCart, getTotal } = useCart();
@@ -88,7 +89,7 @@ const CartScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            {header()}
+           <Header title="Cart" />
             <View style={styles.headerRow}>
                 <Text style={[Fonts.black20Bold]}>My Cart</Text>
             </View>
@@ -119,44 +120,12 @@ const CartScreen = ({ navigation }) => {
             </View>
         </SafeAreaView>
     );
-    {/* ========== Top Header  ===============*/ }
-    function header() {
-        return (
-            <View style={styles.headerStyle}>
-                <TouchableOpacity >
-                    <View style={{ display: "flex", flexDirection: "row", alignItems: 'center', justifyContent: "center", paddingVertical: 5 }}>
-                        <FontAwesome name="long-arrow-left" size={24} color={Colors.blackColor} />
-                        <Text style={{ ...Fonts.black18Bold, marginLeft: 10.0 }}>Cart</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-        )
-    }
+
 };
 
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: Colors.whiteColor},
-    headerStyle: {
-        position: 'absolute',   // fixed position
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 10,
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingVertical: Sizes.fixPadding,
-        paddingHorizontal: Sizes.fixPadding * 2.0,
-        backgroundColor: Colors.whiteColor,
-        shadowColor: Colors.blackColor,
-        shadowOpacity: 1,
-        shadowRadius: 4,
-
-        // ✅ Android shadow
-        elevation: 4,
-
-    },
-    headerRow: { padding: Sizes.fixPadding, marginTop: Sizes.fixPadding * 6.0 },
+    headerRow: { padding: Sizes.fixPadding, },
     cardContainer: {
         backgroundColor: Colors.whiteColor,
         borderRadius: 10,

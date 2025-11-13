@@ -13,6 +13,7 @@ import { Fonts, Colors, Sizes } from "../../constant/styles";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import MyStatusBar from "../../components/myStatusBar";
 import { useNavigation } from "expo-router";
+import Header from "../../components/common/Header";
 
 const { width } = Dimensions.get("window");
 
@@ -55,7 +56,7 @@ const PaymentMethodScreen = () => {
     <View style={{ flex: 1, backgroundColor: "#FAFAFA" }}>
       <MyStatusBar />
       <View style={{ flex: 1 }}>
-        {header()}
+       <Header title="Select Payment Method" />
         {payInfo()}
         {paymentMethod()}
       </View>
