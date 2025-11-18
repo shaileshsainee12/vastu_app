@@ -12,6 +12,7 @@ import {
 import { SwipeListView } from 'react-native-swipe-list-view';
 import MyStatusBar from "../../components/myStatusBar";
 import { useNavigation } from "expo-router";
+import Header from "../../components/common/Header";
 
 const rowTranslateAnimatedValues = {};
 
@@ -130,7 +131,7 @@ const NotificationScreen = () => {
     return (
         <View style={{ backgroundColor: Colors.whiteColor, flex: 1, }}>
             <MyStatusBar />
-            {header()}
+             <Header title="Notifications" />
             {listData.length == 0 ?
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Ionicons name="notifications-off" size={70} color="gray" />
@@ -157,36 +158,11 @@ const NotificationScreen = () => {
         </View>
     );
 
-    function header() {
-        return (
-            <View style={styles.headerWrapStyle}>
-                <MaterialIcons
-                    name="arrow-back"
-                    color={'black'}
-                    size={22}
-                    onPress={() => navigation.pop()}
-                />
-                <Text style={{ ...Fonts.black20Bold, marginLeft: Sizes.fixPadding + 5.0, }}>
-                    Notifications
-                </Text>
-            </View>
-        )
-    }
 }
 
 export default NotificationScreen;
 
 const styles = StyleSheet.create({
-    headerWrapStyle: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        elevation: 2.0,
-        marginBottom: Sizes.fixPadding,
-        backgroundColor: Colors.whiteColor,
-        paddingHorizontal: Sizes.fixPadding * 2.0,
-        paddingVertical: Sizes.fixPadding + 5.0,
-        ...CommonStyles.shadow,
-    },
     notificationContainerStyle: {
         height: 100.0,
         alignItems: 'center',

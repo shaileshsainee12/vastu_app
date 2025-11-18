@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: Sizes.fixPadding + 4,
   },
-  updateButtonText: { color: Colors.whiteColor, fontWeight: "600", fontFamily: 'Lato_Bold' },
+  updateButtonText: { color: Colors.whiteColor, fontWeight: "600", fontFamily: 'Lora_Bold' },
 });
 
 export default EditProfileScreen;

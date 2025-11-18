@@ -16,14 +16,19 @@ const WelcomeScreen = () => {
         return true;
     };
 
-    useFocusEffect(
-        useCallback(() => {
-            BackHandler.addEventListener("hardwareBackPress", backAction);
-            return () => {
-                BackHandler.removeEventListener("hardwareBackPress", backAction);
-            };
-        }, [backAction])
+  useFocusEffect(
+  useCallback(() => {
+    const subscription = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
     );
+
+    return () => {
+      subscription.remove();   // ✅ correct cleanup
+    };
+  }, [backAction])
+);
+
 
     useEffect(()=>{
        if(islogin){

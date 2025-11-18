@@ -2,12 +2,12 @@ import React from 'react';
 import { SafeAreaView, View, Text, FlatList, TouchableOpacity, Image, Alert, StyleSheet, Platform } from 'react-native';
 import { useCart } from '../context/CartContext';
 import { Colors, Fonts, Sizes } from '../../constant/styles';
+import { router } from "expo-router"; 
 import { Ionicons } from '@expo/vector-icons';
 import Header from '../../components/common/Header';
 
-const CartScreen = ({ navigation }) => {
+const CartScreen = () => {
     const { items, updateQuantity, removeItem, clearCart, getTotal } = useCart();
-
     const renderItem = ({ item, index }) => {
         const price = parseFloat(item.price || item.totalPrice || 0) || 0;
         const total = price * (item.quantity || 1);
@@ -89,7 +89,7 @@ const CartScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-           <Header title="Cart" />
+            <Header title="Cart" />
             <View style={styles.headerRow}>
                 <Text style={[Fonts.black20Bold]}>My Cart</Text>
             </View>
@@ -102,7 +102,10 @@ const CartScreen = ({ navigation }) => {
                 ListEmptyComponent={() => (
                     <View style={styles.emptyBox}>
                         <Text style={Fonts.gray16Regular}>Your cart is empty.</Text>
-                        <TouchableOpacity style={styles.continueBtn} onPress={() => navigation?.goBack?.()}>
+                        <TouchableOpacity style={styles.continueBtn}
+                            onPress={() => router.push('/Shop/ShopScreen')}
+
+                        >
                             <Text style={Fonts.white16Regular}>Continue Shopping</Text>
                         </TouchableOpacity>
                     </View>
@@ -124,7 +127,7 @@ const CartScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: Colors.whiteColor},
+    container: { flex: 1, backgroundColor: Colors.whiteColor },
     headerRow: { padding: Sizes.fixPadding, },
     cardContainer: {
         backgroundColor: Colors.whiteColor,

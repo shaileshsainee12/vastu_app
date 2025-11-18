@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     headerText: {
         color: Colors.whiteColor,
         fontWeight: '600',
-        fontFamily: 'Lato_Bold',
+        fontFamily: 'Lora_Bold',
         fontSize: Sizes.fixPadding + 6.0,
     },
     body: {
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     label: {
         fontSize: Sizes.fixPadding + 2.0,
         fontWeight: '600',
-        fontFamily: 'Lato_Regular',
+        fontFamily: 'Lora_Regular',
         marginBottom: 4,
     },
     input: {

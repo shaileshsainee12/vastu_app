@@ -1,4 +1,4 @@
-import { MaterialIcons, Ionicons,  Entypo, Feather } from '@expo/vector-icons';
+import { MaterialIcons, Ionicons, Entypo, Feather } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useState } from 'react';
 import { TouchableOpacity, StyleSheet, View, BackHandler, Text, Pressable } from "react-native";
@@ -15,12 +15,17 @@ export default function TabLayout() {
 
   useFocusEffect(
     useCallback(() => {
-      BackHandler.addEventListener("hardwareBackPress", backAction);
+      const subscription = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+
       return () => {
-        BackHandler.removeEventListener("hardwareBackPress", backAction);
+        subscription.remove(); // ✅ correct cleanup
       };
     }, [backAction])
   );
+
 
   function _spring() {
     setBackClickCount(1);
@@ -67,19 +72,19 @@ export default function TabLayout() {
           options={{
             tabBarIcon: ({ focused, color }) => focused ?
               <View style={styles.circleStyle}>
-                <Feather name="shopping-bag" size={24} color={color}  />
+                <Feather name="shopping-bag" size={24} color={color} />
               </View>
-              : <Feather name="shopping-bag" size={24} color={color}  />
+              : <Feather name="shopping-bag" size={24} color={color} />
           }}
         />
         <Tabs.Screen
-          name='Chat/ChatScreen'
+          name='Service/ServiceScreen'
           options={{
             tabBarIcon: ({ focused, color }) => focused ?
               <TouchableOpacity style={styles.circleStyle}>
-                <MaterialIcons name="chat" size={24} color={color} />
+                <MaterialIcons name="format-list-bulleted" size={24} color={color} />
               </TouchableOpacity>
-              : <MaterialIcons name="chat" size={24} color={color} />
+              : <MaterialIcons name="format-list-bulleted" size={24} color={color} />
           }}
         />
         <Tabs.Screen

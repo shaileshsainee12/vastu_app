@@ -25,17 +25,17 @@ const MyProfileScreen = () => {
     { id: 3, icon: "calendar-outline", label: "Booking", type: "ion" },
     { id: 4, icon: "video", label: "Training Program & Classes", type: "entypo" },
     { id: 5, icon: "package-variant-closed", label: "Order Details" },
-    { id: 6, icon: "bell-outline", label: "Notifications" },
+    { id: 6, icon: "bell-outline", label: "Notifications", link: "Notifications/NotificationScreen" },
     { id: 7, icon: "map-marker-outline", label: "Saved Address" , link: "Address/AddressListScreen" },
-    { id: 8, icon: "heart-outline", label: "Wishlist" },
+    { id: 8, icon: "heart-outline", label: "Wishlist", link: "Wishlist/WishlistScreen" },
   ];
 
   const profileMenu2 = [
-    { id: 1, icon: "headphones", label: "Help And Support" },
+    { id: 1, icon: "headphones", label: "Help And Support" ,link: "Help/HelpSupportScreen" },
     { id: 2, icon: "settings-outline", label: "Setting", type: "ion", link: "Setting/SettingScreen" },
-    { id: 3, icon: "information-outline", label: "Terms & Conditions" },
-    { id: 4, icon: "file-document-outline", label: "Privacy/Policy" },
-    { id: 5, icon: "refresh", label: "Refund Policy" },
+    { id: 3, icon: "information-outline", label: "Terms & Conditions",link:"TermsConditionsScreen" },
+    { id: 4, icon: "file-document-outline", label: "Privacy/Policy" ,link:"PrivacyPolicyScreen" },
+    { id: 5, icon: "refresh", label: "Refund Policy" ,link:"RefundPolicyScreen" },
   ];
   const navigation = useNavigation();
 

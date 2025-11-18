@@ -17,12 +17,17 @@ const RegisterScreen = () => {
 
     useFocusEffect(
         useCallback(() => {
-            BackHandler.addEventListener("hardwareBackPress", backAction);
+            const subscription = BackHandler.addEventListener(
+                "hardwareBackPress",
+                backAction
+            );
+
             return () => {
-                BackHandler.removeEventListener("hardwareBackPress", backAction);
+                subscription.remove();   // ✅ correct cleanup
             };
         }, [backAction])
     );
+
 
     return (
         <View style={{ flex: 1, }}>

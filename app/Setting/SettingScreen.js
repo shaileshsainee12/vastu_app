@@ -17,7 +17,6 @@ import Header from "../../components/common/Header";
 const SettingScreen = () => {
     const [mobileNotification, setMobileNotification] = useState(true);
     const [whatsappNotification, setWhatsappNotification] = useState(true);
-    const [darkMode, setDarkMode] = useState(true);
     const [showDeactivateModal, setShowDeactivateModal] = useState(false);
     const [showDeactivatedSuccess, setShowDeactivatedSuccess] = useState(false);
     const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -49,19 +48,6 @@ const SettingScreen = () => {
                     </View>
                 </View>
 
-                {/* Theme Setting */}
-                <Text style={[styles.sectionTitle, { marginTop: Sizes.fixPadding * 2 }]}>
-                    Theme Setting
-                </Text>
-                <View style={styles.cardContainer}>
-                    <View style={styles.row}>
-                        <Text style={styles.labelText}>Dark Mode</Text>
-                        {renderAnimatedSwitch(
-                            darkMode,
-                            setDarkMode,
-                        )}
-                    </View>
-                </View>
 
                 {/* Deactivate Account */}
                 <TouchableOpacity

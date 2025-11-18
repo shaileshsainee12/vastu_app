@@ -112,8 +112,8 @@ const ShopScreen = () => {
                             data={products}
                             keyExtractor={(item) => `${item.id}`}
                             renderItem={({ item }) => (
-                                <ProductCard 
-                                    item={{...item, image: item.image}} 
+                                <ProductCard
+                                    item={{ ...item, image: item.image }}
                                     onPress={() => navigation.push('Product/ProductDetails', { name: item.name })}
                                 />
                             )}
@@ -138,7 +138,7 @@ const ShopScreen = () => {
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <View style={{ display: "flex", flexDirection: "row", alignItems: 'center', justifyContent: "center" }}>
                         <FontAwesome name="long-arrow-left" size={18} color={Colors.blackColor} />
-                        <Text style={{...Fonts.black18Bold, marginLeft: 5.0 }}>Product</Text>
+                        <Text style={{ ...Fonts.black18Bold, marginLeft: 5.0 }}>Product</Text>
                     </View>
                 </TouchableOpacity>
                 <View style={{
@@ -150,7 +150,7 @@ const ShopScreen = () => {
                     elevation: 4,
                     borderRadius: "50%"
                 }}>
-                    <Ionicons name="cart-outline" size={24} color={Colors.primary} onPress={() => navigation.push('cart/CartScreen')} />
+                    <Ionicons name="notifications-outline" size={24} color={Colors.primary} onPress={() => navigation.push('Notifications/NotificationScreen')} />
                 </View>
 
             </View>
@@ -230,7 +230,7 @@ const ShopScreen = () => {
                         <Text style={styles.oldPrice}>₹{item.oldPrice}</Text>
                     </View>
                     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 10, marginVertical: Sizes.fixPadding }}>
-                        <TouchableOpacity 
+                        <TouchableOpacity
                             style={styles.addIcon}
                             onPress={() => {
                                 addItem({
@@ -243,8 +243,8 @@ const ShopScreen = () => {
                             <Ionicons name="cart-outline" size={20} color={`${Colors.blackColor}`} />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.bookButton} onPress={() =>
-                                    navigation.push('Product/ProductDetails', { name: item.name })
-                                }>
+                            navigation.push('Product/ProductDetails', { name: item.name })
+                        }>
                             <Text style={styles.bookButtonText}>Order Now</Text>
                         </TouchableOpacity>
                     </View>
@@ -624,7 +624,7 @@ const styles = StyleSheet.create({
     },
     bookButtonText: {
         color: Colors.whiteColor,
-        fontFamily: "Lato_Bold",
+        fontFamily: "Lora_Bold",
         fontWeight: "600",
     },
 

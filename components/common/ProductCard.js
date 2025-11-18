@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     },
     bookButtonText: {
         color: Colors.whiteColor,
-        fontFamily: "Lato_Bold",
+        fontFamily: "Lora_Bold",
         fontWeight: "600",
     },
 })

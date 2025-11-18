@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: Sizes.fixPadding + 2,
     fontWeight: '600',
-    fontFamily: 'Lato_Regular',
+    fontFamily: 'Lora_Regular',
     marginBottom: Sizes.fixPadding -5.0,
   },
   inputBox: {
